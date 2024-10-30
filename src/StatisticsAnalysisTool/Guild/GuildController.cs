@@ -155,6 +155,9 @@ public class GuildController
         var guild = GuildMapping.Mapping(dto);
 
         _mainWindowViewModel.GuildBindings.SiphonedEnergyList.AddRange(guild.SiphonedEnergies);
+        _mainWindowViewModel.GuildBindings.FameRequirement = guild.FameRequirement;
+        _mainWindowViewModel.GuildBindings.RecruitmentMessage = guild.RecruitmentMessage;
+        _mainWindowViewModel.GuildBindings.PlayersAlreadyInvited = guild.PlayersAlreadyInvited;
         UpdateSiphonedEnergyOverview();
     }
 
@@ -163,7 +166,10 @@ public class GuildController
         DirectoryController.CreateDirectoryWhenNotExists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Settings.Default.UserDataDirectoryName));
         await FileController.SaveAsync(new GuildDto()
         {
-            SiphonedEnergies = _mainWindowViewModel.GuildBindings.SiphonedEnergyList.Select(GuildMapping.Mapping).ToList()
+            SiphonedEnergies = _mainWindowViewModel.GuildBindings.SiphonedEnergyList.Select(GuildMapping.Mapping).ToList(),
+            FameRequirement = _mainWindowViewModel.GuildBindings.FameRequirement,
+            RecruitmentMessage = _mainWindowViewModel.GuildBindings.RecruitmentMessage,
+            PlayersAlreadyInvited = _mainWindowViewModel.GuildBindings.PlayersAlreadyInvited
         },
             Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Settings.Default.UserDataDirectoryName, Settings.Default.GuildFileName));
         Log.Information("Guild data saved");

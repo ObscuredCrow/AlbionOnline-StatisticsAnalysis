@@ -3,6 +3,7 @@ using StatisticsAnalysisTool.Common.UserSettings;
 using StatisticsAnalysisTool.Localization;
 using StatisticsAnalysisTool.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Data;
 
@@ -11,6 +12,14 @@ namespace StatisticsAnalysisTool.Guild;
 public class GuildBindings : BaseViewModel
 {
     public ListCollectionView SiphonedEnergyCollectionView { get; set; }
+    public int FameRequirement { get; set; }
+    public string RecruitmentMessage { get; set; }
+    public List<string> PlayersAlreadyInvited { get; set; }
+
+    public List<string> UnguildedPlayers = new List<string>();
+    public List<Tuple<ulong, ulong, ulong, ulong, ulong>> UnguildedPlayersFame = new List<Tuple<ulong, ulong, ulong, ulong, ulong>>();
+    public bool IsSearchingForGuildlessPlayers = false;
+
     private ManuallySiphonedEnergy _manuallySiphonedEnergy;
     private GridLength _gridSplitterPosition;
     private ObservableRangeCollection<SiphonedEnergyItem> _siphonedEnergyList = new();
@@ -135,4 +144,6 @@ public class GuildBindings : BaseViewModel
     public string TranslationLastUpdate => LocalizationController.Translation("LAST_UPDATE");
     public string TranslationLootLogChecker => LocalizationController.Translation("LOOT_LOG_CHECKER");
     public string TranslationTotal => LocalizationController.Translation("TOTAL");
+    public string TranslationFameRequired => LocalizationController.Translation("FAME_REQUIRED");
+    public string TranslationRecruitment => LocalizationController.Translation("RECRUITMENT_MESSAGE");
 }

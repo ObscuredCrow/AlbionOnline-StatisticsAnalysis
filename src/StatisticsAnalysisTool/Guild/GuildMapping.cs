@@ -9,7 +9,10 @@ public static class GuildMapping
     {
         return new GuildDto()
         {
-            SiphonedEnergies = guild.SiphonedEnergies.Select(Mapping).ToList()
+            SiphonedEnergies = guild.SiphonedEnergies.Select(Mapping).ToList(),
+            FameRequirement = guild.FameRequirement,
+            RecruitmentMessage = guild.RecruitmentMessage,
+            PlayersAlreadyInvited = guild.PlayersAlreadyInvited
         };
     }
 
@@ -17,7 +20,10 @@ public static class GuildMapping
     {
         return new Guild()
         {
-            SiphonedEnergies = guildDto.SiphonedEnergies.Select(Mapping).ToList()
+            SiphonedEnergies = guildDto.SiphonedEnergies.Select(Mapping).ToList(),
+            FameRequirement = guildDto.FameRequirement,
+            RecruitmentMessage = guildDto.RecruitmentMessage,
+            PlayersAlreadyInvited = guildDto.PlayersAlreadyInvited
         };
     }
 

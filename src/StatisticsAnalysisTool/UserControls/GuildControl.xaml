@@ -108,6 +108,37 @@
                     </Grid>
                 </Grid>
             </TabItem>
+            <TabItem Header="Recruitment">
+                <Grid>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="15,5,0,0">
+                            <Button Name="btnRefreshList" Click="btnRefreshList_Click">Start Refreshing</Button>
+                            <TextBlock Width="5"/>
+                            <Button Name="btnStopRefreshList" Click="btnStopRefreshList_Click">Stop Refreshing</Button>
+                            <TextBlock Width="5"/>
+                            <Button Name="btnRemoveEntry" Click="btnRemoveEntry_Click">Remove Entry</Button>
+                            <TextBlock Width="5"/>
+                            <Button Name="btnClearList" Click="btnClearList_Click">Clear List</Button>
+                            <TextBlock Width="5"/>
+                            <TextBlock Width="150" FontWeight="Bold" Foreground="White" TextAlignment="Right" VerticalAlignment="Center">Whispers Sent:</TextBlock>
+                            <TextBlock Name="txtWhisperSent" Width="50" Foreground="Green" TextAlignment="Right" VerticalAlignment="Center">0/50</TextBlock>
+                            <TextBlock Width="150" FontWeight="Bold" Foreground="White" TextAlignment="Right" VerticalAlignment="Center">Whisper Lock Timer:</TextBlock>
+                            <TextBlock Name="txtWhisperTimer" Width="50" Foreground="Green" TextAlignment="Right" VerticalAlignment="Center">00:00</TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="15,5,0,0">
+                            <TextBlock Width="150" Foreground="White" VerticalAlignment="Center">Total Fame Required:</TextBlock>
+                            <TextBlock Width="5"/>
+                            <TextBox Text="{Binding GuildBindings.FameRequirement}" TextAlignment="Right" Width="150" />
+                        </StackPanel>
+                        <TextBox TextWrapping="Wrap" Name="txtWhisperMessage" Text="{Binding GuildBindings.RecruitmentMessage}" Height="50" Margin="15,5,15,0" />
+                        <ScrollViewer Height="300" Margin="15,0,15,0">
+                            <StackPanel Name="stackUnguildedPlayers" Orientation="Vertical" VerticalAlignment="Top">
+
+                            </StackPanel>
+                        </ScrollViewer>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
         </TabControl>
         <Grid Visibility="{Binding GuildBindings.GuildPopupVisibility, FallbackValue=Collapsed}" 
               Margin="0,60,0,0" Background="{StaticResource SolidColorBrush.Background.2}">

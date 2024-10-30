@@ -104,6 +104,17 @@ public static class Utilities
         }
     }
 
+    public static string FameConvertion(ulong value) {
+        if (value > 1000000000)
+            return MathF.Floor(value / 1000000).ToString() + "B";
+        else if (value > 1000000)
+            return MathF.Floor(value / 1000000).ToString() + "M";
+        else if (value > 1000)
+            return MathF.Floor(value / 1000).ToString() + "K";
+        else
+            return value.ToString();
+    }
+
     #region Window Flash
 
     private const uint FlashwStop = 0; //Stop flashing. The system restores the window to its original state.

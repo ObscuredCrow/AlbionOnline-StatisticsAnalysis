@@ -179,6 +179,7 @@ public class Gathered : BaseViewModel
     public static string TranslationTotal => LocalizationController.Translation("TOTAL");
     public static string TranslationSelectToDelete => LocalizationController.Translation("SELECTED_TO_DELETE");
     public static string TranslationTotalMarketValue => LocalizationController.Translation("TOTAL_MARKET_VALUE");
+    public static string TranslationFame => LocalizationController.Translation("FAME");
 
     public bool IsClosed
     {
