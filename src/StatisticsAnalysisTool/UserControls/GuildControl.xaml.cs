@@ -146,7 +146,7 @@ public partial class GuildControl
     }
 
     private void RemoveEntry(string playerName) {
-        if (_whisperCount >= 49) {
+        if (_whisperCount >= 50) {
             _guildBinding.IsSearchingForGuildlessPlayers = false;
             txtWhisperSent.Foreground = new SolidColorBrush(Colors.Red);
             txtWhisperTimer.Foreground = new SolidColorBrush(Colors.Red);

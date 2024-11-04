@@ -106,17 +106,14 @@ public class EntityController
         _knownEntities.TryAdd(gameObject.UserGuid, gameObject);
 
         var guildBinding = _mainWindowViewModel.GuildBindings;
-        if (!guildBinding.IsSearchingForGuildlessPlayers)
-            return;
+        if (!guildBinding.IsSearchingForGuildlessPlayers) return;
 
         if (string.IsNullOrEmpty(gameObject.Guild) && !guildBinding.PlayersAlreadyInvited.Contains(gameObject.Name) && !guildBinding.UnguildedPlayers.Contains(gameObject.Name)) {
             var gameInfoSearch = await ApiController.GetGameInfoSearchFromJsonAsync(gameObject.Name);
             var searchPlayer = gameInfoSearch?.SearchPlayer?.FirstOrDefault();
             var gameInfoPlayers = await ApiController.GetGameInfoPlayersFromJsonAsync(searchPlayer?.Id);
-            if (gameInfoPlayers == null)
-                return;
-            if (gameInfoPlayers.LifetimeStatistics == null)
-                return;
+            if (gameInfoPlayers == null) return;
+            if (gameInfoPlayers.LifetimeStatistics == null) return;
 
             var totalFame = (ulong) gameInfoPlayers.KillFame + gameInfoPlayers.LifetimeStatistics.PvE.Total + gameInfoPlayers.LifetimeStatistics.Gathering.All.Total + gameInfoPlayers.LifetimeStatistics.Crafting.Total;
             if (totalFame >= (ulong) guildBinding.FameRequirement) {

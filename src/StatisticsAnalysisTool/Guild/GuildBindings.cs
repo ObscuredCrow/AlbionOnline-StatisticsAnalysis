@@ -12,8 +12,8 @@ namespace StatisticsAnalysisTool.Guild;
 public class GuildBindings : BaseViewModel
 {
     public ListCollectionView SiphonedEnergyCollectionView { get; set; }
-    public int FameRequirement { get; set; }
-    public string RecruitmentMessage { get; set; }
+    public int FameRequirement { get; set; } = 0;
+    public string RecruitmentMessage { get; set; } = "";
     public List<string> PlayersAlreadyInvited { get; set; }
 
     public List<string> UnguildedPlayers = new List<string>();
