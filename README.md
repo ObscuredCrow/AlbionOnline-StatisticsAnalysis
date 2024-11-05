@@ -17,6 +17,11 @@ A tool to easily read auction house data with a loot logger, damage meter, dunge
   <img src="https://user-images.githubusercontent.com/14247773/147143464-c36d0cba-dddb-4b34-bd2e-11e3f65e3289.png" data-canonical-src="https://user-images.githubusercontent.com/14247773/147143464-c36d0cba-dddb-4b34-bd2e-11e3f65e3289.png" width="400" height="400" />
 </p>
 
+## Modified Version
+This version of the AlbionOnline - Statistics Analysis Tool has been modified to include additional functionality that is not included in the original version. Features that have been added are listed below:
+- Killboard Tracker
+- Guild Recruitment Assistant
+
 ## Getting Started
 
 ### Prerequisites & Installation
