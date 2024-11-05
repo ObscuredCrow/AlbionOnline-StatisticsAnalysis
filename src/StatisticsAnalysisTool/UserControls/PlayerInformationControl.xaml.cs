@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Windows.Controls;
 using StatisticsAnalysisTool.Models.BindingModel;
+using StatisticsAnalysisTool.Common;
+using System.Diagnostics;
 
 namespace StatisticsAnalysisTool.UserControls;
 

@@ -105,6 +105,7 @@ public class MainWindowViewModel : BaseViewModel
     private Visibility _itemSearchTabVisibility = Visibility.Visible;
     private Visibility _loggingTabVisibility = Visibility.Visible;
     private Visibility _dungeonsTabVisibility = Visibility.Visible;
+    private Visibility _killboardTabVisibility = Visibility.Visible;
     private Visibility _damageMeterTabVisibility = Visibility.Visible;
     private Visibility _tradeMonitoringTabVisibility = Visibility.Visible;
     private Visibility _gatheringTabVisibility = Visibility.Visible;
@@ -1120,6 +1121,14 @@ public class MainWindowViewModel : BaseViewModel
         set
         {
             _dungeonsTabVisibility = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public Visibility KillboardTabVisibility {
+        get => _killboardTabVisibility;
+        set {
+            _killboardTabVisibility = value;
             OnPropertyChanged();
         }
     }

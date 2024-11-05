@@ -2,11 +2,13 @@
 using StatisticsAnalysisTool.Common.UserSettings;
 using StatisticsAnalysisTool.Enumerations;
 using StatisticsAnalysisTool.Exceptions;
+using StatisticsAnalysisTool.Guild;
 using StatisticsAnalysisTool.Models;
 using StatisticsAnalysisTool.Models.ApiModel;
 using StatisticsAnalysisTool.Properties;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -214,6 +216,53 @@ public static class ApiController
             ConsoleManager.WriteLineForError(MethodBase.GetCurrentMethod()?.DeclaringType, e);
             Log.Error(e, "{message}", MethodBase.GetCurrentMethod()?.DeclaringType);
             return gameInfoPlayerResponse;
+        }
+    }
+
+    // TODO - FINISH ME
+    public static async Task<List<GameInfoPlayerKillsDeaths>> GetGameInfoEventsFromJsonAsync(string guildName = "", string playerName = "", string allianceName = "", int limit = 51, int offset = 1) {
+        var values = new List<GameInfoPlayerKillsDeaths>();
+        Debug.WriteLine("Scanning Events for new Entries");
+
+        if (string.IsNullOrEmpty(guildName) && string.IsNullOrEmpty(playerName) && string.IsNullOrEmpty(allianceName)) {
+            return values;
+        }
+
+        var url = $"{GetServerBaseUrlByCurrentServer()}/api/gameinfo/events?limit={limit}&offset={offset}";
+
+        using var clientHandler = new HttpClientHandler();
+        clientHandler.ServerCertificateCustomValidationCallback = (_, _, _, _) => true;
+        using var client = new HttpClient(clientHandler);
+        client.Timeout = TimeSpan.FromSeconds(600);
+        try {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+            using var response = await client.GetAsync(url);
+            using var content = response.Content;
+
+            List<GameInfoPlayerKillsDeaths> finalList = new List<GameInfoPlayerKillsDeaths>();
+            var list = JsonSerializer.Deserialize<List<GameInfoPlayerKillsDeaths>>(await content.ReadAsStringAsync()) ?? values;
+            foreach (var item in list) {
+                if (!string.IsNullOrEmpty(allianceName))
+                    if (item.Killer.AllianceName != allianceName && item.Victim.AllianceName != allianceName) continue;
+
+                if (!string.IsNullOrEmpty(guildName))
+                    if (item.Killer.GuildName != guildName && item.Victim.GuildName != guildName) continue;
+
+                if (!string.IsNullOrEmpty(playerName))
+                    if (item.Killer.Name != playerName && item.Victim.Name != playerName) continue;
+
+                finalList.Add(item);
+            }
+
+            list.Clear();
+            Debug.WriteLine($"Finished Scanning Events for {finalList.Count} Entries Found");
+
+            return finalList;
+        }
+        catch (Exception e) {
+            ConsoleManager.WriteLineForError(MethodBase.GetCurrentMethod()?.DeclaringType, e);
+            Log.Error(e, "{message}", MethodBase.GetCurrentMethod()?.DeclaringType);
+            return values;
         }
     }
 

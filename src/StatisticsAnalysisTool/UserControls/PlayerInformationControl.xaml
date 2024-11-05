@@ -23,7 +23,6 @@
 
         <ScrollViewer  Margin="0,60,0,20" HorizontalScrollBarVisibility="Disabled">
             <StackPanel Margin="10,5,10,10">
-
                 <StackPanel Margin="0,0,0,20">
                     <StackPanel Orientation="Horizontal">
                         <Label Content="" Style="{StaticResource PlayerMode.Label.Title}" />
@@ -59,6 +58,13 @@
                         <Label Content="{Binding PlayerInformationBindings.PlayerModeInformation.GameInfoPlayers.GuildName, UpdateSourceTrigger=PropertyChanged}" 
                                Style="{StaticResource PlayerMode.Label.Value.Current}" />
                         <Label Content="{Binding PlayerInformationBindings.PlayerModeInformationLocal.GameInfoPlayers.GuildName, UpdateSourceTrigger=PropertyChanged}" 
+                               Style="{StaticResource PlayerMode.Label.Value.Last}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{Binding PlayerInformationBindings.PlayerModeTranslation.GuildId, FallbackValue=GUILD__ID}" Style="{StaticResource PlayerMode.Label.Title}" />
+                        <Label Content="{Binding PlayerInformationBindings.PlayerModeInformation.GameInfoPlayers.GuildId, UpdateSourceTrigger=PropertyChanged}" 
+                               Style="{StaticResource PlayerMode.Label.Value.Current}" />
+                        <Label Content="{Binding PlayerInformationBindings.PlayerModeInformationLocal.GameInfoPlayers.GuildId, UpdateSourceTrigger=PropertyChanged}" 
                                Style="{StaticResource PlayerMode.Label.Value.Last}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">

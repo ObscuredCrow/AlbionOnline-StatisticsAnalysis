@@ -68,6 +68,7 @@ public class MainWindowTranslation
     public static string TrackingFame => LocalizationController.Translation("TRACKING_FAME");
     public static string ItemSearch => LocalizationController.Translation("ITEM_SEARCH");
     public static string Dungeons => LocalizationController.Translation("DUNGEONS");
+    public static string Killboard => LocalizationController.Translation("Killboard");
     public static string PlayerInformation => LocalizationController.Translation("PLAYER_INFORMATION");
     public static string TradeMonitoring => LocalizationController.Translation("TRADE_MONITORING");
     public static string Party => LocalizationController.Translation("PARTY");
