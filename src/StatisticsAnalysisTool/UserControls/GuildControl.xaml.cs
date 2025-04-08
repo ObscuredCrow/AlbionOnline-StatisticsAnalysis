@@ -161,9 +161,8 @@ public partial class GuildControl
             _whisperCount++;
             txtWhisperSent.Text = $"{_whisperCount}/{_whisperLimit}";
 
-            _guildBinding.PlayersAlreadyInvited.Add(_guildBinding.UnguildedPlayers[0]);
-
             var index = _guildBinding.UnguildedPlayers.IndexOf(playerName);
+            _guildBinding.PlayersAlreadyInvited.Add(_guildBinding.UnguildedPlayers[index]);
             _guildBinding.UnguildedPlayersFame.RemoveAt(index);
             _guildBinding.UnguildedPlayers.RemoveAt(index);
         }

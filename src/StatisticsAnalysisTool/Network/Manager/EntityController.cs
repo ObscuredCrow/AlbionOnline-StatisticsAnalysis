@@ -108,7 +108,9 @@ public class EntityController
         var guildBinding = _mainWindowViewModel.GuildBindings;
         if (!guildBinding.IsSearchingForGuildlessPlayers) return;
 
-        if (string.IsNullOrEmpty(gameObject.Guild) && !guildBinding.PlayersAlreadyInvited.Contains(gameObject.Name) && !guildBinding.UnguildedPlayers.Contains(gameObject.Name)) {
+        if (string.IsNullOrEmpty(gameObject.Guild) && 
+            !guildBinding.PlayersAlreadyInvited.Contains(gameObject.Name) && 
+            !guildBinding.UnguildedPlayers.Contains(gameObject.Name)) {
             var gameInfoSearch = await ApiController.GetGameInfoSearchFromJsonAsync(gameObject.Name);
             var searchPlayer = gameInfoSearch?.SearchPlayer?.FirstOrDefault();
             var gameInfoPlayers = await ApiController.GetGameInfoPlayersFromJsonAsync(searchPlayer?.Id);

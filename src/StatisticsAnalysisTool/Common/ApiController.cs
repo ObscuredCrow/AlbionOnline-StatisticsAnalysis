@@ -207,8 +207,12 @@ public static class ApiController
             {
                 return gameInfoPlayerResponse;
             }
-
-            return JsonSerializer.Deserialize<GameInfoPlayersResponse>(await content.ReadAsStringAsync()) ??
+            
+            var msg = await content.ReadAsStringAsync();
+            if (msg.Contains("\"AverageItemPower\":null"))
+                msg = msg.Replace("\"AverageItemPower\":null", "\"AverageItemPower\":0");
+            
+            return JsonSerializer.Deserialize<GameInfoPlayersResponse>(msg) ??
                    gameInfoPlayerResponse;
         }
         catch (Exception e)
@@ -218,8 +222,7 @@ public static class ApiController
             return gameInfoPlayerResponse;
         }
     }
-
-    // TODO - FINISH ME
+    
     public static async Task<List<GameInfoPlayerKillsDeaths>> GetGameInfoEventsFromJsonAsync(string guildName = "", string playerName = "", string allianceName = "", int limit = 51, int offset = 1) {
         var values = new List<GameInfoPlayerKillsDeaths>();
         Debug.WriteLine("Scanning Events for new Entries");
